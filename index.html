@@ -6,8 +6,18 @@
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-functions.js"></script>
   </head>
   <body>
-    <button onclick="googleSignin()">Google Signin</button>
-    <button onclick="googleSignout()">Google Signout</button>
+
+<label> title <label> <br>
+  <input type="text" id="title">
+  <br>
+  <label> description <label> <br>
+<textarea>
+</textarea>
+<br>
+<button onclick="cleartext()">add</button>
+    
+     
+
     <script>
       // Initialize Firebase
       const firebaseConfig = {
@@ -21,49 +31,15 @@
         appId: '1:547020170883:web:15a74f1d93a42f298c9db6',
         measurementId: 'G-4VYDVVPSEY',
       };
+
       firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
       const auth = firebase.auth();
       const functions = firebase.functions();
       db.settings({ timestampsInSnapshots: true });
 
-      var provider = new firebase.auth.GoogleAuthProvider();
 
-      function googleSignin() {
-        firebase
-          .auth()
-
-          .signInWithPopup(provider)
-          .then(function (result) {
-            var token = result.credential.accessToken;
-            var user = result.user;
-
-            console.log(token);
-            console.log(user);
-          })
-          .catch(function (error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-
-            console.log(error.code);
-            console.log(error.message);
-          });
-      }
-
-      function googleSignout() {
-        firebase
-          .auth()
-          .signOut()
-
-          .then(
-            function () {
-              console.log('Signout Succesfull');
-            },
-            function (error) {
-              console.log('Signout Failed');
-            }
-          );
-      }
+      
     </script>
   </body>
 </html>
