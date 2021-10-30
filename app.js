@@ -17,3 +17,19 @@ const auth = firebase.auth();
 const functions = firebase.functions();
 db.settings({ timestampsInSnapshots: true });
 
+
+// add data to firestore
+function addData() {
+  let title = document.getElementById("title");
+  let desc = document.getElementById("desc");
+  let payload = {
+    title : title.value,
+    desc : desc.value,
+    createdAt : new Date().toISOString()
+  }
+    db.collection('posts').add(payload);
+    console.log("data added to the firestore successfully");
+    title.value = "";
+    desc.value = "";
+
+}
